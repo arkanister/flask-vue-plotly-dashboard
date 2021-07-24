@@ -1,0 +1,28 @@
+version: '3.4'
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/backend/Dockerfile
+    env_file: frontend/.env
+    ports:
+      - '5000:5000'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/healthy"]
+      interval: 1s
+      timeout: 3s
+      retries: 10
+  frontend:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/frontend/Dockerfile
+    env_file: backend/.env
+    ports:
+      - '8080:8080'
+    depends_on:
+      - backend
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/"]
+      interval: 1s
+      timeout: 3s
+      retries: 10
