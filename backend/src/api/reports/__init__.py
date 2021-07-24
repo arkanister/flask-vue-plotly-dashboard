@@ -1,0 +1,4 @@
+from api.reports.game_release_percent_by_platform_in_the_years import \
+    GameReleasePercentByPlatformInTheYearsChartResource
+from api.reports.genres_by_user_score_avg_chart import GenresByUserScoreAVGChartResource
+from api.reports.platforms_by_user_score_avg_chart import PlatformsByUserScoreAVGChartResource
